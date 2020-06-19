@@ -1,0 +1,80 @@
+#Required Settings Below:
+
+#This is a list of FQDNs for the netbox server. Netbox will not permit write 
+#access to the server via other hostnames. The first FQDN in the list will 
+#be treated as the preferred name.
+
+#Example: ALLOWED_HOSTS = ['netbox.example.com', 'netbox.internal.local']
+ALLOWED HOSTS =  ['*']
+
+#PostSQL database configuration. See the Django documentation for a complete 
+#list of available parameters:
+#https://docs.djangoproject.com/en/stable/ref/settings/#databases
+DATABASE = {
+    'NAME': 'netbox',              # Database name
+    'USER': '',                    # PostgreSQL username
+    'PASSWORD': '',                # PostgreSQL password
+    'HOST': 'localhost',           # Database server
+    'PORT': '',                    # Database port (leave blank for default)
+    'CONN_MAX_AGE': 300,           # Max database connection age
+}
+
+# Redis database settings. redis is used for caching and for queuing background 
+# tasks such as webhook events a set configuration exists for each. Full connection 
+$two separate IDs.
+
+REDIS = {
+    'tasks': {
+'HOST': 'localhost',
+        'PORT': 6379,
+        # Comment out 'HOST' and 'PORT' lines uncomment the following if using Redis 
+        # Sentinel
+        # 'SENTINELS': [('mysentinel.redis.example.com', 6379)].
+        'PASSWORD': '',
+        'DATABASE': 0,
+        'DEFAULT_TIMEOUT': 300,
+        'SSL': False,
+    },
+    'caching': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        # Comment out 'HOST' and 'PORT' lines and uncomment the following if using 
+        # Redis Sentinel
+        # "SENTINELS': [('mysentinel.redis.example.com', 6379)],
+        # 'SENTINELS_SERVICE': 'netbox',
+REDIS = {
+    'tasks': {
+'HOST': 'localhost',
+        'PORT': 6379,
+        # Comment out 'HOST' and 'PORT' lines uncomment the following if using Redis 
+        # Sentinel
+        # 'SENTINELS': [('mysentinel.redis.example.com', 6379)].
+        'PASSWORD': '',
+        'DATABASE': 0,
+        'DEFAULT_TIMEOUT': 300,
+        'SSL': False,
+
+}
+}
+
+# This key is used for secure generation of random numbers and string. It must never 
+# be exposed outside of this field.
+# For optimal security, SECRET_KEY should be at least 50 characters long in length
+# and contain a mix of letters, numbers, and symbols.
+# https://docs.djangoproject.com/en/ref/settings/#std:setting-SECRET_KEY
+SECRET_KEY = ''
+
+
+
+
+#######################
+#                     #
+#  Optional Settings  #
+#                     #
+#######################
+
+# Specify one or more name email address tuples representing NetBox 
+# administrators. These people will be notified.
+ADMINS = [
+    # ['John Doe', 'jdoe@example.com'},
+]
